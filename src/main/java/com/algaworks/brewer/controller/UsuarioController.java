@@ -14,16 +14,16 @@ import com.algaworks.brewer.service.exception.SenhaObrigatoriaUsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -73,6 +73,15 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
         mv.addObject("grupos", grupoRepository.findAll());
         mv.addObject("usuarios", usuarioRepository.filtar(usuarioFilter));
+        
         return mv;
     }
+
+    @PutMapping("/status")
+    @ResponseStatus(HttpStatus.OK)
+    public void atualizarStatus(@RequestParam("codigos[]") Long[] codigos, @RequestParam("status") String status){
+        usuarioService.alterarStatus(codigos,status);
+    }
+
+
 }

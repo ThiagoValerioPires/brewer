@@ -3,6 +3,7 @@ package com.algaworks.brewer.model;
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name="usuario")
+@DynamicUpdate
 public class Usuario {
 
     @Id
@@ -51,6 +53,11 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name="codigo_grupo")
     )
     private List<Grupo> grupos;
+
+    @PreUpdate
+    private void preUpdade(){
+        this.confirmacaoSenha = senha;
+    }
 
     public boolean isNovo(){
         return codigo == null;

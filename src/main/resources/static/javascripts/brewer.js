@@ -92,8 +92,6 @@ Brewer.Security = (function() {
 }());
 
 
-
-
 $(function(){
     let maskMoney = new Brewer.MaskMoney();
     maskMoney.enable();

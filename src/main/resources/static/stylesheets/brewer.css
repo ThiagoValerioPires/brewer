@@ -112,6 +112,12 @@
     width: 80px;
 }
 
+/* Colunas pesquisa de usuarios */
+.table-usuarios-col-status {
+    width: 30px;
+    text-align: center;
+}
+
 /*
 ##############
 # CUSTOMIZACAO DE COMPONENTES

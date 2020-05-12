@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
@@ -36,5 +38,10 @@ public class UsuarioService {
         }
 
         return usuarioRepository.saveAndFlush(usuario);
+    }
+
+    @Transactional
+    public void alterarStatus(Long[] codigos, String status) {
+        usuarioRepository.findByCodigoIn(codigos).forEach(u -> u.setAtivo("ATIVAR".equals(status)));
     }
 }
