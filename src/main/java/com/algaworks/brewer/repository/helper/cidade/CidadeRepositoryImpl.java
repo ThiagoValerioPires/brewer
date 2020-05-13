@@ -37,7 +37,7 @@ public class CidadeRepositoryImpl  implements CidadeQueries {
         criteria.createAlias("estado","e", JoinType.INNER_JOIN);
         adicionarFiltro(filtro, criteria);
 
-        return new PageImpl<Cidade>(criteria.list(), pageable, total(filtro));
+        return new PageImpl<>(criteria.list(), pageable, total(filtro));
     }
 
     private void adicionarFiltro(CidadeFilter filtro, Criteria criteria) {

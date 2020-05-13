@@ -39,7 +39,7 @@ public class EstiloRepositoryImpl  implements EstiloQueries {
 
         adicionarFiltro(filtro, criteria);
 
-        return new PageImpl<Estilo>(criteria.list(),pageable, total(filtro));
+        return new PageImpl<>(criteria.list(),pageable, total(filtro));
     }
 
     private void adicionarFiltro(EstiloFilter filtro, Criteria criteria) {

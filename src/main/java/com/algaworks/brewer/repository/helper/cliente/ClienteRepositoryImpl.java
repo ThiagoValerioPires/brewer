@@ -39,7 +39,7 @@ public class ClienteRepositoryImpl implements ClienteQueries {
         criteria.createAlias("endereco.cidade", "c", JoinType.LEFT_OUTER_JOIN);
         criteria.createAlias("c.estado","e", JoinType.LEFT_OUTER_JOIN);
 
-        return new PageImpl<Cliente>(criteria.list(), pageable, total(filtro));
+        return new PageImpl<>(criteria.list(), pageable, total(filtro));
     }
 
     private void adicionarFiltro(ClienteFilter filtro, Criteria criteria) {

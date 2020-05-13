@@ -1,6 +1,7 @@
 package com.algaworks.brewer.controller;
 
 import com.algaworks.brewer.controller.page.PageWrapper;
+import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.model.Usuario;
 import com.algaworks.brewer.repository.UsuarioRepository;
@@ -72,8 +73,9 @@ public class UsuarioController {
     public ModelAndView pesquisar(UsuarioFilter usuarioFilter, BindingResult result, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest){
         ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
         mv.addObject("grupos", grupoRepository.findAll());
-        mv.addObject("usuarios", usuarioRepository.filtar(usuarioFilter));
-        
+
+        PageWrapper<Usuario> paginaWrapper = new PageWrapper<>(usuarioRepository.filtar(usuarioFilter,pageable), httpServletRequest);
+        mv.addObject("pagina", paginaWrapper );
         return mv;
     }
 
