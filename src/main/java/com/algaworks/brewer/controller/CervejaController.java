@@ -2,6 +2,7 @@ package com.algaworks.brewer.controller;
 
 
 import com.algaworks.brewer.controller.page.PageWrapper;
+import com.algaworks.brewer.dto.CervejaDTO;
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -70,6 +72,11 @@ public class CervejaController {
         PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>(cervejaRepository.filtar(cervejaFilter, pageable), httpServletRequest);
         mv.addObject("pagina", paginaWrapper );
         return mv;
+    }
+
+    @GetMapping("/filtro")
+    public @ResponseBody List<CervejaDTO> pesquisar(String skuOuNome){
+        return cervejaRepository.porSkuOuNome(skuOuNome);
     }
 
 

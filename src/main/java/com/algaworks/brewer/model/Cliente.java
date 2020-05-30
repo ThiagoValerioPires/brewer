@@ -3,6 +3,7 @@ package com.algaworks.brewer.model;
 import com.algaworks.brewer.model.validation.ClienteGroupSequenceProvider;
 import com.algaworks.brewer.model.validation.group.CnpjGroup;
 import com.algaworks.brewer.model.validation.group.CpfGroup;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Email;
@@ -44,6 +45,7 @@ public class Cliente {
     @Email(message = "E-mail invalido")
     private String email;
 
+    @JsonIgnore
     @Embedded
     private Endereco endereco;
 
