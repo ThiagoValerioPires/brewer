@@ -3,6 +3,7 @@ package com.algaworks.brewer.config;
 import com.algaworks.brewer.controller.converter.CidadeConverter;
 import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.GrupoConverter;
+import com.algaworks.brewer.session.TabelaItensVenda;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import com.algaworks.brewer.controller.CervejaController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
@@ -20,6 +21,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.repository.support.DomainClassConverter;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.number.NumberStyleFormatter;
@@ -45,7 +48,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-@ComponentScan(basePackageClasses = {CervejaController.class})
+@ComponentScan(basePackageClasses = {CervejaController.class, TabelaItensVenda.class})
 @EnableWebMvc
 @EnableSpringDataWebSupport
 @EnableCaching
@@ -138,6 +141,11 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         bundle.setBasename("classpath:/messages");
         bundle.setDefaultEncoding("UTF-8"); // http://www.utf8-chartable.de/
         return bundle;
+    }
+
+    @Bean
+    public DomainClassConverter<FormattingConversionService> domainClassConverter(){
+        return new DomainClassConverter<FormattingConversionService>(mvcConversionService());
     }
 
 }
