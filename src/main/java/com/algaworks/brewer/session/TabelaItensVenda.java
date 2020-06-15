@@ -3,21 +3,24 @@ package com.algaworks.brewer.session;
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.ItemVenda;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@SessionScope
-@Component
 @Getter
-public class TabelaItensVenda {
+class TabelaItensVenda {
+
+    private final String uuid;
 
     private final List<ItemVenda> itens = new ArrayList<>();
+
+    public TabelaItensVenda(String uuid) {
+        this.uuid = uuid;
+    }
 
     public BigDecimal getValorTotal(){
         return itens.stream()
@@ -64,4 +67,16 @@ public class TabelaItensVenda {
                 .findAny();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TabelaItensVenda that = (TabelaItensVenda) o;
+        return uuid.equals(that.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
 }

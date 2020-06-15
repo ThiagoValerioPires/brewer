@@ -1,4 +1,4 @@
-package com.algaworks.brewer.venda;
+package com.algaworks.brewer.session;
 
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.session.TabelaItensVenda;
@@ -15,7 +15,7 @@ public class TabelaItensVendaTest {
 
     @Before
     public void setUp(){
-        this.tabelaItensVenda = new TabelaItensVenda();
+        this.tabelaItensVenda = new TabelaItensVenda("1");
     }
 
     @Test

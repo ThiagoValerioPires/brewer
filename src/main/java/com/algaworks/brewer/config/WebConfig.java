@@ -3,7 +3,7 @@ package com.algaworks.brewer.config;
 import com.algaworks.brewer.controller.converter.CidadeConverter;
 import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.GrupoConverter;
-import com.algaworks.brewer.session.TabelaItensVenda;
+import com.algaworks.brewer.session.TabelaItensSession;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import com.algaworks.brewer.controller.CervejaController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
@@ -48,7 +48,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-@ComponentScan(basePackageClasses = {CervejaController.class, TabelaItensVenda.class})
+@ComponentScan(basePackageClasses = {CervejaController.class, TabelaItensSession.class})
 @EnableWebMvc
 @EnableSpringDataWebSupport
 @EnableCaching
