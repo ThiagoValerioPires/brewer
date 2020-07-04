@@ -5,6 +5,7 @@ import com.algaworks.brewer.model.ItemVenda;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,5 +38,9 @@ public class TabelaItensSession {
         return tabelas.stream()
                 .filter(t -> t.getUuid().equals(uuid))
                 .findAny().orElse(new TabelaItensVenda(uuid));
+    }
+
+    public BigDecimal getValorTotal(String uuid) {
+        return buscatTabelaPorUuid(uuid).getValorTotal();
     }
 }

@@ -16,11 +16,6 @@ Brewer.MaskMoney = (function(){
 
 }());
 
-Brewer.formatarMoeda = function(valor) {
-    numeral.language('pt-br');
-    return numeral(valor).format('0,0.00');
-}
-
 Brewer.MaskPhoneNumber = (function(){
 
     function MaskPhoneNumber() {
@@ -95,6 +90,16 @@ Brewer.Security = (function() {
     return Security;
 
 }());
+
+numeral.language('pt-br');
+
+Brewer.formatarMoeda = function(valor) {
+    return numeral(valor).format('0,0.00');
+}
+
+Brewer.recuperarValor = function(valorFormatado){
+    return numeral().unformat(valorFormatado);
+}
 
 
 $(function(){
