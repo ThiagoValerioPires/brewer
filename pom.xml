@@ -29,7 +29,7 @@
 
         <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
 
-        <hibernate-validator.version>5.3.5.Final</hibernate-validator.version>
+        <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
 
         <lombok.version>1.18.12</lombok.version>
 
